@@ -10,14 +10,14 @@ class Task:
 
     def generateID(self):
         return str(uuid.uuid4())
-    
+
     def to_dict(self):
-        return{
+        return {
             "id": self.id,
             "task": self.task,
             "completed": self.completed,
-            "descriptions": self.descriptions
+            "descriptions": self.descriptions,
         }
-    
+
     def toggle_completed(self):
         self.completed = not self.completed

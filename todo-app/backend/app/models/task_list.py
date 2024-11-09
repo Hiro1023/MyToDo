@@ -1,12 +1,13 @@
-from app.models.task import Task  
+from app.models.task import Task
+
 
 class TaskList:
     def __init__(self):
-        self.tasks = {}  
+        self.tasks = {}
 
     def add_task(self, task, description=""):
         new_task = Task(task, description)
-        self.tasks[new_task.id] = new_task  
+        self.tasks[new_task.id] = new_task
         return new_task
 
     def remove_task(self, task_id):
