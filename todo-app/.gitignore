@@ -5,6 +5,9 @@
 # backend 
 backend/__pycache__/
 
+# database
+data/db/*
+
 
 # Frontend settings
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
