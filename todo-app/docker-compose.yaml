@@ -1,37 +1,29 @@
-
-
-
 services:
-  
-    # mongoDB
-    mongodb:
-      image: mongo
-      container_name: mongodb
-      ports:
-        - "27017:27017"
-      volumes:
-       - "/c/Users/Hirotaka/my_projects/MyToDo/todo-app/data/db:/data/db"
-      networks:
-        - my_network
+  # mongoDB
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - "/c/Users/Hirotaka/my_projects/MyToDo/todo-app/data/db:/data/db"
+    networks:
+      - my_network
 
-    
-    #backend
-    backend:
-      build: ./backend
-      ports:
-        - "5000:5000"
-      environment:
-        - MONGO_URI=mongodb://mongodb:27017/todo_db
-      volumes:
-        - ./backend/app:/app/app
-      depends_on:
-        - mongodb
-      networks:
-        - my_network
+  #backend
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/todo_db
+    volumes:
+      - ./backend/app:/app/app
+    depends_on:
+      - mongodb
+    networks:
+      - my_network
 
 networks:
   my_network:
     driver: bridge
-
-
-    
