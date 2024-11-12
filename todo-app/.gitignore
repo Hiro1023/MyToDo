@@ -6,7 +6,11 @@
 backend/__pycache__/
 
 # database
+# Ignore everything inside data/db
 data/db/*
+
+# But do not ignore the data/db folder itself
+!data/db/.gitkeep
 
 # Frontend settings
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
