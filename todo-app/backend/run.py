@@ -1,7 +1,7 @@
 from app import app
 
-print("Starting Flask app...")  # デバッグメッセージ
+print("Starting Flask app...")
 
 if __name__ == "__main__":
-    app.run(debug=True)
-    print("Flask app is running")  # サーバーが起動したことを確認
+    app.run(host="0.0.0.0", debug=True)
+    print("Flask app is running")
