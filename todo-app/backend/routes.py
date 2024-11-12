@@ -1,22 +1,25 @@
 import uuid
-#from app import app
+
+# from app import app
 from flask import Flask, request, jsonify
 from app.models.task_list import TaskList
 from app.models.task import Task
 
 from flask import Blueprint
 
-routes = Blueprint('routes', __name__)
+routes = Blueprint("routes", __name__)
 tasks = TaskList()
 
-@routes.route('/')
+
+@routes.route("/")
 def index():
     return "Hello, World!"
 
 
-#tasks.add_task("test1", "")
-#tasks.add_task("test2", "Hello, I am test2")
-#tasks.add_task("test3", "Hello, I am test3")
+# tasks.add_task("test1", "")
+# tasks.add_task("test2", "Hello, I am test2")
+# tasks.add_task("test3", "Hello, I am test3")
+
 
 @routes.route("/todos", methods=["GET"])
 def getTodos():
@@ -39,7 +42,7 @@ def editTask(id):
     description = request.json.get("description")
     updated_task = tasks.edit_task(id, new_task, description)
     if updated_task:
-        return jsonify(updated_task.to_dict()), 200
+        return jsonify(tasks.get_task(id)), 200
     return jsonify({"error": "Task not found"}), 404
 
 
