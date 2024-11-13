@@ -1,0 +1,53 @@
+/* CSS for task list container */
+.task-list-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    gap: 10px; /* Add spacing between elements */
+}
+
+.task-item div {
+    flex: 1;
+}
+
+.task-item span {
+    font-weight: bold;
+}
+
+.task-item button {
+    padding: 5px 10px;
+    margin-left: 5px;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+.task-item .delete {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.task-item button:not(.delete) {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.task-item div > div {
+    font-size: 0.85em;
+    color: gray;
+    margin-top: 4px;
+}

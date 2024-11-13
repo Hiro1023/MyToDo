@@ -13,6 +13,7 @@ services:
   #backend
   backend:
     build: ./backend
+    container_name: backend
     ports:
       - "5000:5000"
     environment:
@@ -21,6 +22,17 @@ services:
       - ./backend/app:/app/app
     depends_on:
       - mongodb
+    networks:
+      - my_network
+
+  # forntend
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
     networks:
       - my_network
 

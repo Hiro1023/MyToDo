@@ -4,6 +4,7 @@ import sys
 
 import logging
 from bson import ObjectId
+from flask import jsonify
 from pymongo import MongoClient
 from app.models.task import Task
 from app.db import get_db
@@ -19,8 +20,8 @@ class TaskList:
     def add_task(self, task, description=""):
         existing_task = self.tasks_collection.find_one({"task": task})
         if existing_task:
-            # return jsonify({"error": "Task with the same name already exists"}), 400
-            return []
+           #return jsonify({"error": "Task with the same name already exists"}), 400
+            return None
 
         new_task = Task(task, description)
         self.tasks_collection.insert_one(new_task.to_dict())
@@ -80,6 +81,11 @@ class TaskList:
     def get_task(self, task_id):
         object_id = self.convert_to_objectid(task_id)
         task = self.tasks_collection.find_one({"_id": object_id})
+        task["_id"] = str(task["_id"])
+        return task
+    
+    def get_task_by_taskname(self, task_name):
+        task = self.tasks_collection.find_one({"task": task_name})
         task["_id"] = str(task["_id"])
         return task
 
