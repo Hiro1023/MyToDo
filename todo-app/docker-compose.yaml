@@ -24,6 +24,17 @@ services:
     networks:
       - my_network
 
+  # forntend
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - my_network
+
 networks:
   my_network:
     driver: bridge

@@ -1,0 +1,8 @@
+node_modules
+build
+npm-debug.log
+frontend/coverage
+frontend/.env.local
+frontend/.env.test.local
+frontend/.env.development.local
+frontend/.DS_Store

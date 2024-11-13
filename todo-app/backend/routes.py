@@ -16,11 +16,6 @@ def index():
     return "Hello, World!"
 
 
-# tasks.add_task("test1", "")
-# tasks.add_task("test2", "Hello, I am test2")
-# tasks.add_task("test3", "Hello, I am test3")
-
-
 @routes.route("/todos", methods=["GET"])
 def getTodos():
     return jsonify(tasks.get_all_tasks())
@@ -30,9 +25,9 @@ def getTodos():
 def postTask():
     new_task = request.json.get("task")
     description = request.json.get("description")
-    if new_task:
-        tasks.add_task(new_task, description)
-        return jsonify(tasks.get_all_tasks()), 201
+    result = tasks.add_task(new_task, description)
+    if result:
+        return jsonify(tasks.get_task_by_taskname(new_task)), 201
     return jsonify({"error": "Task content is required"}), 400
 
 
