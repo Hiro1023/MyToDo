@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../styles/TaskList.css';
 
 function TaskList() {
+    const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
     const [tasks, setTasks] = useState([]);
     const [editTaskId, setEditTaskId] = useState(null);
     const [editTaskText, setEditTaskText] = useState("");
@@ -19,7 +20,7 @@ function TaskList() {
             return;
         }
 
-        fetch('http://localhost:5000/todos', {
+        fetch(`${backendUrl}/todos`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ task: newTask, description: "New task description" }),
@@ -46,7 +47,7 @@ function TaskList() {
     };
 
     const fetchTasks = () => {
-        fetch('http://localhost:5000/todos')
+        fetch(`${backendUrl}/todos`)
             .then(response => response.json())
             .then(data => setTasks(data))
             .catch(error => {
@@ -56,7 +57,7 @@ function TaskList() {
     };
 
     const toggleCompleteStatus = (taskId, currentStatus) => {
-        fetch(`http://localhost:5000/todos/${taskId}`, {
+        fetch(`${backendUrl}/todos/${taskId}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ completed: !currentStatus }),
@@ -75,7 +76,7 @@ function TaskList() {
     };
 
     const deleteTask = (taskId) => {
-        fetch(`http://localhost:5000/todos/${taskId}`, {
+        fetch(`${backendUrl}/todos/${taskId}`, {
             method: 'DELETE',
         })
         .then(() => {
@@ -96,7 +97,7 @@ function TaskList() {
     
         const currentTask = tasks.find(task => task._id === taskId);
     
-        fetch(`http://localhost:5000/todos/${taskId}`, {
+        fetch(`${backendUrl}/todos/${taskId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ task: newText, description: newDescription, completed: currentTask.completed }),

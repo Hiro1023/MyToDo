@@ -4,6 +4,11 @@ FROM node:16
 # 作業ディレクトリを設定
 WORKDIR /app
 
+
+# 環境変数をフロントエンドに渡す
+ARG REACT_APP_BACKEND_URL
+ENV REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL
+
 # package.jsonとpackage-lock.jsonをコピーし、依存関係をインストール
 COPY package*.json ./
 RUN npm install

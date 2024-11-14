@@ -19,14 +19,14 @@ spec:
         ports:
         - containerPort: 27017
         volumeMounts:
-        - name: mongo-persistent-volume
+        - name: mongo-persistent-storage
           mountPath: /data/db
   volumeClaimTemplates:
   - metadata:
-      name: mongo-persistent-strage
+      name: mongo-persistent-storage
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      strageClassName: "standard"
+      storageClassName: hostpath  # This assumes "standard" is a dynamic storage class
       resources:
         requests:
           storage: 1Gi
