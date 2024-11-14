@@ -20,7 +20,7 @@ spec:
         - containerPort: 80  # ポートを 80 に変更
         env:
         - name: REACT_APP_BACKEND_URL
-          value: "http://localhost:5000"
+          value: "http://backend:5000"
         resources:
           limits:
             memory: "512Mi"
