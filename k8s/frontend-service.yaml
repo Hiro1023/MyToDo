@@ -7,6 +7,7 @@ spec:
     app: frontend          
   ports:
     - protocol: TCP
-      port: 80              
-      targetPort: 3000  
-  type: ClusterIP 
+      port: 80             # クラスタ内でのポート
+      targetPort: 80       # コンテナのポート（80に変更）
+      nodePort: 30080
+  type: NodePort 

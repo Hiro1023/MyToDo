@@ -17,11 +17,11 @@ spec:
         image: todo-app-frontend:latest
         imagePullPolicy: Never
         ports:
-        - containerPort: 3000
+        - containerPort: 80  # ポートを 80 に変更
         env:
-        - name: REACT_APP_BACKEND_URL # スペースを削除してアンダースコアに変更
-          value: "http://backend:5000"
-        resources:         # 追加: リソース制限を指定
+        - name: REACT_APP_BACKEND_URL
+          value: "http://localhost:5000"
+        resources:
           limits:
             memory: "512Mi"
             cpu: "500m"
