@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../styles/TaskList.css';
 
 function TaskList() {
-    const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://backend:5000';
+    const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
     const [tasks, setTasks] = useState([]);
     const [editTaskId, setEditTaskId] = useState(null);
     const [editTaskText, setEditTaskText] = useState("");
@@ -47,7 +47,7 @@ function TaskList() {
     };
 
     const fetchTasks = () => {
-        fetch(`${backendUrl}/todos`)
+        fetch(`http://backend:5000/todos`)
             .then(response => response.json())
             .then(data => setTasks(data))
             .catch(error => {
