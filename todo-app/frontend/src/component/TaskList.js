@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../styles/TaskList.css';
 
 function TaskList() {
-    const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+    //const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
     const [tasks, setTasks] = useState([]);
     const [editTaskId, setEditTaskId] = useState(null);
     const [editTaskText, setEditTaskText] = useState("");
@@ -20,7 +20,7 @@ function TaskList() {
             return;
         }
 
-        fetch(`${backendUrl}/todos`, {
+        fetch(`/todos`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ task: newTask, description: "New task description" }),
@@ -47,7 +47,7 @@ function TaskList() {
     };
 
     const fetchTasks = () => {
-        fetch(`http://backend:5000/todos`)
+        fetch(`/todos`)
             .then(response => response.json())
             .then(data => setTasks(data))
             .catch(error => {
@@ -57,7 +57,7 @@ function TaskList() {
     };
 
     const toggleCompleteStatus = (taskId, currentStatus) => {
-        fetch(`${backendUrl}/todos/${taskId}`, {
+        fetch(`/todos/${taskId}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ completed: !currentStatus }),
@@ -76,7 +76,7 @@ function TaskList() {
     };
 
     const deleteTask = (taskId) => {
-        fetch(`${backendUrl}/todos/${taskId}`, {
+        fetch(`/todos/${taskId}`, {
             method: 'DELETE',
         })
         .then(() => {
@@ -97,7 +97,7 @@ function TaskList() {
     
         const currentTask = tasks.find(task => task._id === taskId);
     
-        fetch(`${backendUrl}/todos/${taskId}`, {
+        fetch(`/todos/${taskId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ task: newText, description: newDescription, completed: currentTask.completed }),
