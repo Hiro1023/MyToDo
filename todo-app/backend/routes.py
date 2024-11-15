@@ -10,10 +10,9 @@ from flask import Blueprint
 routes = Blueprint("routes", __name__)
 tasks = TaskList()
 
-
 @routes.route("/")
 def index():
-    return "Hello, World!"
+    return jsonify(tasks.get_all_tasks())
 
 
 @routes.route("/todos", methods=["GET"])
@@ -31,7 +30,7 @@ def postTask():
     return jsonify({"error": "Task content is required"}), 400
 
 
-@routes.route("/todos/<id>", methods=["PUT"])
+@routes.route('/todos/<id>', methods=["PUT"])
 def editTask(id):
     new_task = request.json.get("task")
     description = request.json.get("description")
@@ -41,14 +40,14 @@ def editTask(id):
     return jsonify({"error": "Task not found"}), 404
 
 
-@routes.route("/todos/<id>", methods=["PATCH"])
+@routes.route('/todos/<id>', methods=["PATCH"])
 def updateTask(id):
     if tasks.toggle_task(id):
         return jsonify(tasks.get_task(id)), 201
     return jsonify({"error": "Task is not found"}), 404
 
 
-@routes.route("/todos/<id>", methods=["DELETE"])
+@routes.route('/todos/<id>', methods=["DELETE"])
 def deleteTask(id):
     if tasks.remove_task(id):
         return jsonify(tasks.get_all_tasks()), 201

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend            
+spec:
+  selector:
+    app: frontend          
+  ports:
+    - protocol: TCP
+      port: 80             # クラスタ内でのポート
+      targetPort: 80       # コンテナのポート（80に変更）
+      nodePort: 30080
+  type: NodePort 
