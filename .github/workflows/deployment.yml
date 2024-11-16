@@ -24,6 +24,9 @@ jobs:
         - name: Go into todo-app dierectory
           run: cd todo-app
         
+        - name: Actual dierectory
+          run: pwd
+        
         - name: Build and push frontend Docker image
           run: |
             docker build -t ${{ secrets.DOCKER_USERNAME }}/todo-app-frontend:latest ./frontend
