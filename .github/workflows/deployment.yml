@@ -29,11 +29,11 @@ jobs:
         
         - name: Build and push frontend Docker image
           run: |
-            docker build -t ${{ secrets.DOCKER_USERNAME }}/todo-app-frontend:latest ./frontend
+            docker build -t ${{ secrets.DOCKER_USERNAME }}/todo-app-frontend:latest ./todo-app/frontend
             docker push ${{ secrets.DOCKER_USERNAME }}/todo-app-frontend:latest
           
         - name: Build and push backend Docker image
           run: |
-            docker build -t ${{ secrets.DOCKER_USERNAME }}/todo-app-backend:latest ./backend
+            docker build -t ${{ secrets.DOCKER_USERNAME }}/todo-app-backend:latest ./todo-app/backend
             docker push ${{ secrets.DOCKER_USERNAME }}/todo-app-backend:latest
           
