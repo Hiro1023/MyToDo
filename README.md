@@ -23,7 +23,7 @@ The application supports two deployment methods:
 
 ---
 
-## Running the Application Using Kubernetes (only way to use now)
+## Running the Application Using Kubernetes (running now)
 
 1. Ensure that Kubernetes is enabled and running in your environment. You can use one of the following methods to set up Kubernetes easily:
    - [Minikube](https://minikube.sigs.k8s.io/docs/start/)
